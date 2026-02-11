@@ -17,9 +17,9 @@ const TABLES: string[] = [
 	'directus_permissions'
 ];
 
-const registerHook: HookConfig = async ({init}: any, {database, logger}: any): Promise<void> => {
+const registerHook: HookConfig = async ({init}: any, {database}: any): Promise<void> => {
 	init('cli.before', async ({program}: any): Promise<void> => {
-		console.log('\nUse "cope -h" for help.');
+		console.log('Use "cope -h" for help.');
 
 		const cope: any = program
 			.command('cope')
@@ -28,25 +28,25 @@ const registerHook: HookConfig = async ({init}: any, {database, logger}: any): P
 		cope
 			.command('init')
 			.description('Execute init.sql to initialize relation metadata.')
-			.action((): Promise<never> => initAction(database, logger));
+			.action((): Promise<never> => initAction(database));
 
 		cope
 			.command('sql')
 			.description('Execute raw SQL files in enums, tables, relations and triggers folders (including nested).')
 			.option('-d, --sql-dir <directory>', 'SQL directory path', './snapshots/sql/')
-			.action((options: { sqlDir: string }): Promise<never> => sqlAction(options, database, logger));
+			.action((options: { sqlDir: string }): Promise<never> => sqlAction(options, database));
 
 		cope
 			.command('export')
 			.description('Export Directus metadata to JSON file.')
 			.option('-f, --file <file>', 'Output file', './snapshots/cope-snapshot.json')
-			.action((options: { file: string }): Promise<never> => exportAction(TABLES, options, database, logger));
+			.action((options: { file: string }): Promise<never> => exportAction(TABLES, options, database));
 
 		cope
 			.command('import')
 			.description('Import Directus metadata from JSON file')
 			.option('-f, --file <file>', 'Input file', './snapshots/cope-snapshot.json.')
-			.action((options: { file: string }): Promise<never> => importAction(TABLES, options, database, logger));
+			.action((options: { file: string }): Promise<never> => importAction(TABLES, options, database));
 
 		cope.action((): void => cope.help());
 	});

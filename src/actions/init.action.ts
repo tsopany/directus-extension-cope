@@ -1,13 +1,14 @@
 import executeInitSql from '../functions/execute.init.sql';
 
-const initAction = async (database: any, logger: any): Promise<never> => {
-	console.log('Use "cope init -h" for command specific help.\n');
+const initAction = async (database: any): Promise<never> => {
+	console.log('Use "cope init -h" for command specific help.');
 
 	try {
-		await executeInitSql(database, logger);
+		await executeInitSql(database);
+
 		process.exit(0);
 	} catch (err) {
-		logger.error(err as Error);
+		console.error(err as Error);
 		process.exit(1);
 	}
 };

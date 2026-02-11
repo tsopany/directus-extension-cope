@@ -1,7 +1,7 @@
 import fs from 'fs-extra';
 
-const importAction = async (TABLES: string[], options: { file: string }, database: any, logger: any): Promise<never> => {
-	console.log('Use "cope import -h" for command specific help.\n');
+const importAction = async (TABLES: string[], options: { file: string }, database: any): Promise<never> => {
+	console.log('Use "cope import -h" for command specific help.');
 
 	try {
 		const data: Record<string, any[]> = await fs.readJSON(options.file);
@@ -20,11 +20,11 @@ const importAction = async (TABLES: string[], options: { file: string }, databas
 				}
 			}
 		});
+		console.log(`Imported from ${options.file}.`);
 
-		logger.info(`Imported from ${options.file}.\n`);
 		process.exit(0);
 	} catch (err) {
-		logger.error(err as Error);
+		console.error(err as Error);
 		process.exit(1);
 	}
 
