@@ -6,7 +6,7 @@ import getSqlFilesRecursively from '../functions/get.sql.files.recursively';
 const sqlAction = async (options: { sqlDir: string }, database: any): Promise<never> => {
 	console.log('Use "cope sql -h" for command specific help.');
 
-	const sqlFolders: string[] = ['enums', 'tables', 'relations', 'triggers'];
+	const sqlFolders: string[] = ['enums', 'tables', 'relations', 'triggers', 'data'];
 	const baseDir: string = path.resolve(process.cwd(), options.sqlDir);
 
 	try {
