@@ -13,8 +13,9 @@ const TABLES: string[] = [
 
 	// Access Control
 	'directus_policies',
-	'directus_access',
-	'directus_permissions'
+	'directus_permissions',
+	'directus_roles',
+	'directus_access'
 ];
 
 const registerHook: HookConfig = async ({init}: any, {database}: any): Promise<void> => {
