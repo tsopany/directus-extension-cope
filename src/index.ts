@@ -46,7 +46,7 @@ const registerHook: HookConfig = async ({init}: any, {database}: any): Promise<v
 		cope
 			.command('import')
 			.description('Import Directus metadata from JSON file')
-			.option('-f, --file <file>', 'Input file', './snapshots/cope-snapshot.json.')
+			.option('-f, --file <file>', 'Input file', './snapshots/cope-snapshot.json')
 			.action((options: { file: string }): Promise<never> => importAction(TABLES, options, database));
 
 		cope.action((): void => cope.help());
