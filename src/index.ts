@@ -33,7 +33,7 @@ const registerHook: HookConfig = async ({init}: any, {database}: any): Promise<v
 
 		cope
 			.command('sql')
-			.description('Execute raw SQL files in enums, tables, relations, triggers and data folders (including nested).')
+			.description('Execute raw SQL files in enums, tables, relations and triggers folders (including nested).')
 			.option('-d, --sql-dir <directory>', 'SQL directory path', './snapshots/sql/')
 			.action((options: { sqlDir: string }): Promise<never> => sqlAction(options, database));
 
