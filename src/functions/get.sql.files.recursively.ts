@@ -4,7 +4,9 @@ import {Dirent} from 'node:fs';
 
 const getSqlFilesRecursively = (dir: string): string[] => {
 	let results: string[] = [];
-	const entries: Dirent<string>[] = fs.readdirSync(dir, {withFileTypes: true});
+	const entries: Dirent<string>[] = fs.readdirSync(dir, {
+		withFileTypes: true
+	});
 	for (const entry of entries) {
 		const fullPath: string = path.join(dir, entry.name);
 		if (entry.isDirectory()) {

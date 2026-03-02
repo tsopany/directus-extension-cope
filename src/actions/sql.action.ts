@@ -3,10 +3,27 @@ import path from 'node:path';
 
 import getSqlFilesRecursively from '../functions/get.sql.files.recursively';
 
-const sqlAction = async (options: { sqlDir: string }, database: any): Promise<never> => {
+const sqlAction = async (options: {sqlDir: string; folders?: string}, database: any): Promise<never> => {
 	console.log('Use "cope sql -h" for command specific help.');
 
-	const sqlFolders: string[] = ['enums', 'tables', 'relations', 'triggers'];
+	const allFolders: string[] = ['enums', 'tables', 'relations', 'triggers', 'data'];
+
+	if (!options.folders) {
+		console.error('Error: --folders parameter is required.');
+		console.error(`Valid options: ${allFolders.join(', ')}`);
+		process.exit(1);
+	}
+
+	const requestedFolders: string[] = options.folders.split(',').map((f) => f.trim());
+	const invalidFolders: string[] = requestedFolders.filter((f) => !allFolders.includes(f));
+
+	if (invalidFolders.length > 0) {
+		console.error(`Invalid folder(s): ${invalidFolders.join(', ')}. Valid options: ${allFolders.join(', ')}`);
+		process.exit(1);
+	}
+
+	const sqlFolders: string[] = allFolders.filter((f) => requestedFolders.includes(f));
+	console.log(`Executing SQL from folders: ${sqlFolders.join(', ')}`);
 	const baseDir: string = path.resolve(process.cwd(), options.sqlDir);
 
 	try {

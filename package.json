@@ -2,7 +2,7 @@
 	"name": "directus-extension-cope",
 	"description": "CoPe: Sync Directus Configs",
 	"icon": "extension",
-	"version": "1.1.0",
+	"version": "1.1.2",
 	"keywords": [
 		"directus",
 		"directus-extension",
@@ -19,10 +19,12 @@
 		"host": "^10.10.0"
 	},
 	"scripts": {
-		"build": "directus-extension build",
+		"build": "pnpm fix && directus-extension build",
 		"dev": "directus-extension build -w --no-minify",
 		"link": "directus-extension link",
 		"validate": "directus-extension validate",
+		"format": "prettier --log-level silent --write \"src/**/*.{js,json,ts}\"",
+		"fix": "pnpm i && pnpm dedupe && pnpm format",
 		"l": "pnpm up -i -L"
 	},
 	"dependencies": {
@@ -32,7 +34,8 @@
 	},
 	"devDependencies": {
 		"@directus/extensions-sdk": "17.0.9",
-		"@types/node": "^25.3.2",
+		"@types/node": "^25.3.3",
+		"prettier": "^3.8.1",
 		"typescript": "^5.9.3"
 	},
 	"packageManager": "pnpm@10.30.0"
