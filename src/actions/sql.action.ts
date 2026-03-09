@@ -6,7 +6,7 @@ import getSqlFilesRecursively from '../functions/get.sql.files.recursively';
 const sqlAction = async (options: {sqlDir: string; folders?: string}, database: any): Promise<never> => {
 	console.log('Use "cope sql -h" for command specific help.');
 
-	const allFolders: string[] = ['enums', 'tables', 'relations', 'triggers', 'data'];
+	const allFolders: string[] = ['enums', 'tables', 'indexes', 'relations', 'triggers'];
 
 	if (!options.folders) {
 		console.error('Error: --folders parameter is required.');
