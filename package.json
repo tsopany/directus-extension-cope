@@ -23,20 +23,32 @@
 		"dev": "directus-extension build -w --no-minify",
 		"link": "directus-extension link",
 		"validate": "directus-extension validate",
+		"lint": "eslint src test --no-fix",
+		"linter": "eslint src test --no-fix --quiet",
+		"lint:fix": "eslint src test --fix",
 		"format": "prettier --log-level silent --write \"src/**/*.{js,json,ts}\"",
-		"fix": "pnpm i && pnpm dedupe && pnpm format",
+		"fix": "pnpm i && pnpm dedupe && skeletest -f && pnpm format && git add test && pnpm lint:fix && pnpm test",
+		"test": "vitest",
+		"test:run": "vitest run",
+		"test:coverage": "vitest run --coverage --config vitest.config.ts",
 		"l": "pnpm up -i -L"
 	},
 	"dependencies": {
 		"@directus/extensions": "^3.0.20",
 		"@types/fs-extra": "^11.0.4",
-		"fs-extra": "^11.3.4"
+		"fs-extra": "^11.3.4",
+		"skeletest": "^0.7.4"
 	},
 	"devDependencies": {
 		"@directus/extensions-sdk": "17.0.10",
 		"@types/node": "^25.3.5",
+		"@vitest/coverage-v8": "^3.2.4",
+		"eslint": "^9.35.0",
+		"@eslint/js": "^9.35.0",
+		"typescript-eslint": "^8.42.0",
 		"prettier": "^3.8.1",
-		"typescript": "^5.9.3"
+		"typescript": "^5.9.3",
+		"vitest": "^3.2.4"
 	},
 	"packageManager": "pnpm@10.32.1"
 }

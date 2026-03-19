@@ -1,0 +1,18 @@
+{
+	"srcFolderName": "src",
+	"filesExtensions": [
+		"js",
+		"ts",
+		"json",
+		"vue"
+	],
+	"testFolderName": "test",
+	"testFileExtensionPrefix": "spec",
+	"testExtension": "ts",
+	"useVitest": true,
+	"ignoreMocksFolder": true,
+	"ignoreSrcFiles": [
+	],
+	"ignoreTestFiles": [
+	]
+}
