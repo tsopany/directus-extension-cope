@@ -28,9 +28,9 @@
 		"lint:fix": "eslint src test --fix",
 		"format": "prettier --log-level silent --write \"src/**/*.{js,json,ts}\"",
 		"fix": "pnpm i && pnpm dedupe && skeletest -f && pnpm format && git add test && pnpm lint:fix && pnpm test",
-		"test": "vitest",
-		"test:run": "vitest run",
-		"test:coverage": "vitest run --coverage --config vitest.config.ts",
+		"quick": "vitest run",
+		"test": "vitest run --coverage",
+		"test:watch": "vitest watch",
 		"l": "pnpm up -i -L"
 	},
 	"dependencies": {

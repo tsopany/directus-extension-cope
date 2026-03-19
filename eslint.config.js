@@ -10,9 +10,12 @@ export default [
 			parserOptions: {
 				projectService: true,
 				tsconfigRootDir: import.meta.dirname,
+				project: ['./tsconfig.eslint.json'],
 			},
 		},
 		rules: {
+			// This codebase currently uses `any` for Directus/database hooks.
+			'@typescript-eslint/no-explicit-any': 'off',
 			'@typescript-eslint/no-unused-vars': [
 				'warn',
 				{ argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
