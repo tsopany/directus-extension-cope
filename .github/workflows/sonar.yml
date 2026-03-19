@@ -1,0 +1,44 @@
+name: Build
+
+on:
+    push:
+        branches:
+            - main
+
+jobs:
+    build:
+        name: Build and analyze
+        runs-on: windows-latest
+
+        steps:
+            -   uses: actions/checkout@v4
+                with:
+                    fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+
+            -   name: Setup Node.js
+                uses: actions/setup-node@v4
+                with:
+                    node-version: '24'
+
+            -   name: Enable corepack
+                run: corepack enable
+
+            -   name: PNPM Version
+                run: pnpm -v
+
+            -   name: Install Dependencies
+                run: pnpm i --frozen-lockfile
+
+            -   name: Run tests (coverage)
+                run: pnpm test
+
+            -   uses: SonarSource/sonarqube-scan-action@v6
+                env:
+                    SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+                    SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+            # If you wish to fail your job when the Quality Gate is red, uncomment the
+            # following lines. This would typically be used to fail a deployment.
+            -   uses: SonarSource/sonarqube-quality-gate-action@v1
+                timeout-minutes: 5
+                env:
+                    SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
