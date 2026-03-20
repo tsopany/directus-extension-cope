@@ -3,8 +3,8 @@ import type {HookConfig} from '@directus/extensions';
 import sqlAction from './actions/sql.action';
 import initAction from './actions/init.action';
 
-const registerHook: HookConfig = async ({init}: any, {database}: any): Promise<void> => {
-	init('cli.before', async ({program}: any): Promise<void> => {
+const registerHook: HookConfig = ({init}: any, {database}: any): void => {
+	init('cli.before', ({program}: any): void => {
 		console.log('Use "cope -h" for help.');
 
 		const cope: any = program.command('cope').helpOption('-h, --help', 'Use "cope <command> -h" for command-specific help.');

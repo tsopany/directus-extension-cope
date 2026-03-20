@@ -15,6 +15,6 @@ const getSqlFilesRecursively = (dir: string): string[] => {
 			results.push(fullPath);
 		}
 	}
-	return results.sort();
+	return results.sort((a: string, b: string): number => a.localeCompare(b, 'en', {sensitivity: 'base'}));
 };
 export default getSqlFilesRecursively;
