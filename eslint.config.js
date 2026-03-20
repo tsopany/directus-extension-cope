@@ -8,7 +8,6 @@ export default [
 		files: ['**/*.{ts,tsx}'],
 		languageOptions: {
 			parserOptions: {
-				projectService: true,
 				tsconfigRootDir: import.meta.dirname,
 				project: ['./tsconfig.eslint.json'],
 			},
