@@ -1,6 +1,6 @@
 {
 	"name": "directus-extension-cope",
-	"description": "CoPe: Sync Directus Configs",
+	"description": "CoPe: Directus Extension for DB Sync",
 	"icon": "extension",
 	"version": "1.1.6",
 	"keywords": [
@@ -49,6 +49,15 @@
 		"typescript": "^5.9.3",
 		"typescript-eslint": "^8.57.2",
 		"vitest": "^4.1.1"
+	},
+	"license": "Unlicense",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/tsopany/directus-extension-cope.git"
+	},
+	"homepage": "https://github.com/tsopany/directus-extension-cope#readme",
+	"bugs": {
+		"url": "https://github.com/tsopany/directus-extension-cope/issues"
 	},
 	"packageManager": "pnpm@10.33.0"
 }
